@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CardLib
 {
-	public class Cards : CollectionBase
+	public class Cards : CollectionBase,ICloneable
 	{
 		public void Add(Card newCard) => List.Add(newCard);
 
@@ -39,5 +39,19 @@ namespace CardLib
 		/// <param name="card"></param>
 		/// <returns></returns>
 		public bool Contains(Card card) => InnerList.Contains(card);
+
+		/// <summary>
+		/// 深度复制
+		/// </summary>
+		/// <returns></returns>
+		public object Clone()
+		{
+			Cards newCards = new Cards();
+			foreach (Card sourceCard in List)
+			{
+				newCards.Add((Card)sourceCard.Clone());
+			}
+			return newCards;
+		}
 	}
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CardLib
 {
-	public class Card
+	public class Card : ICloneable
 	{
 		public readonly Rank rank;
 		public readonly Suit suit;
@@ -20,5 +20,11 @@ namespace CardLib
 		private Card() { }
 
 		public override string ToString() => "The " + rank + " of " + suit + "s";
+
+		/// <summary>
+		/// 浅度复制
+		/// </summary>
+		/// <returns></returns>
+		public object Clone() => MemberwiseClone();
 	}
 }
